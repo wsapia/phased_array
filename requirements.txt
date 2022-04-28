@@ -1,0 +1,7 @@
+black
+isort
+matplotlib
+pandas
+pip
+scipy
+wheel
