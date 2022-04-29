@@ -25,7 +25,7 @@ EF_FUNCTION = np.cos if EF is True else lambda x: np.ones_like(x)
 
 # Function to taper the array
 TAPER = True
-TAPER_FUNCTION = np.blackman if TAPER is True else np.ones
+TAPER_FUNCTION = np.hamming if TAPER is True else np.ones
 
 # Boolean to show the plot during data collection (Runs a bit slower, speed it up by limiting the number of shown steps)
 SHOW_PLOT = True
@@ -135,7 +135,7 @@ def compare_scans(angles: np.ndarray, steering_angle: float = 0):
             # Show the scan's progress
             p1.set_data(x, np.abs(norm))
             p2.set_data(x, np.abs(meas_arr))
-            p3.set_xdata(np.deg2rad(angle))
+            p3.set_xdata(np.deg2rad(angle)) if POLAR else p3.set_xdata(angle)
 
             # Update the title
             ax.set_title(f"Probe steering angle: {angle:>6.2f}°")
